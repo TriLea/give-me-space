@@ -5,10 +5,7 @@ const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
-    categories: async () => {
-      return await Category.find();
-    },
-    products: async (parent, { category, name }) => {
+    stars: async (parent, { category, name }) => {
       const params = {};
 
       if (category) {
@@ -29,8 +26,8 @@ const resolvers = {
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
-          populate: 'category'
+          path: 'orders.stars',
+          populate: 'stars'
         });
 
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
@@ -43,8 +40,8 @@ const resolvers = {
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
-          populate: 'category'
+          path: 'orders.stars',
+          populate: 'stars'
         });
 
         return user.orders.id(_id);
@@ -54,21 +51,21 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
+      const order = new Order({ stars: args.stars });
       const line_items = [];
 
-      const { products } = await order.populate('products');
+      const { products } = await order.populate('stars');
 
       for (let i = 0; i < products.length; i++) {
         const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`]
+          name: stars[i].name,
+          description: stars[i].description,
+          images: [`${url}/images/${stars[i].image}`]
         });
 
         const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: products[i].price * 100,
+          stars: stars.id,
+          unit_amount: stars[i].price * 100,
           currency: 'usd',
         });
 
@@ -96,10 +93,10 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, { products }, context) => {
+    addOrder: async (parent, { stars }, context) => {
       console.log(context);
       if (context.user) {
-        const order = new Order({ products });
+        const order = new Order({ stars });
 
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
