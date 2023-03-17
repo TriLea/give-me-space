@@ -1,9 +1,13 @@
 const typeDefs = `#graphql
-  
+  type Star {
+    index: String
+    type: String
+  }
+
   type Order {
     _id: ID
     purchaseDate: String
-    stars: [Stars]
+    star: Star
   }
 
   type User {

@@ -24,7 +24,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  savedStars: [Stars-API]
+  savedStars: star
 });
 
 // set up pre-save middleware to create password

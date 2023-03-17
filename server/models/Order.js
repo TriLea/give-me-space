@@ -7,10 +7,10 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  stars: [
+  star: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Stars'
+      ref: 'Star'
     }
   ]
 });
