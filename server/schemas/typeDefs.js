@@ -1,7 +1,9 @@
 const typeDefs = `#graphql
+
   type Star {
     index: String
     type: String
+    price: Number
   }
 
   type Order {
@@ -15,7 +17,7 @@ const typeDefs = `#graphql
     firstName: String
     lastName: String
     email: String
-    stars: [Stars]
+    orders: [Order]
   }
 
   type Checkout {
@@ -28,13 +30,15 @@ const typeDefs = `#graphql
   }
 
   type Query {
+    getStar: Star
     user: User
     order(_id: ID!): Order
+    checkout(products: [ID]!): Checkout
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
+    addOrder(name: String!, index: String!, type: String!, price: Number!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
   }
