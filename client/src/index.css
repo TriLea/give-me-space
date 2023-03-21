@@ -234,3 +234,41 @@ input:focus {
     0 0 102px #0fa,
     0 0 151px #0fa;
 }
+
+#land {
+  justify-content: center;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  text-shadow:
+  0 0 7px rgb(5, 18, 117),
+  0 0 10px rgb(5, 18, 117),
+  0 0 21px rgb(5, 18, 117),
+  0 0 42px rgb(25, 19, 196),
+  0 0 82px rgb(25, 19, 196),
+  0 0 92px rgb(25, 19, 196),
+  0 0 102px rgb(25, 19, 196),
+  0 0 151px rgb(25, 19, 196);
+}
+
+.landing {
+  justify-content: center;
+  height: 150px;
+  width: 500px;
+  border-radius: 50%;
+  background-color:#ffffffa8
+}
+
+.landing2 {
+  text-align: center;
+}
+
+.landing3 {
+  text-align: center;
+  width: 800px;
+  height: 350px;
+  border-radius: 30%;
+  background-color:#ffffffa8
+}
+
+
