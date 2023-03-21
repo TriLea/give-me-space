@@ -72,7 +72,7 @@ p {
 }
 
 a {
-  color: var(--tertiary);
+  color: rgb(247, 247, 175);
   text-decoration: none;
   font-weight: bold;
 }
@@ -94,11 +94,21 @@ button {
   text-decoration: none;
   padding: 0.25rem 1rem;
   border-radius: .5rem;
-  border: none;
+  border-color: #d8f406;
   outline: none;
   cursor: pointer;
   margin: 0 1px;
-  background-color: var(--secondary);
+  background-color: transparent;
+  color: #fff;
+  text-shadow:
+  0 0 7px #d8f406,
+  0 0 10px #d8f406,
+  0 0 21px #d8f406,
+  0 0 42px rgb(215, 238, 161),
+  0 0 82px rgb(215, 238, 161),
+  0 0 92px rgb(215, 238, 161),
+  0 0 102px rgb(215, 238, 161),
+  0 0 151px rgb(215, 238, 161);
 }
 
 button:hover {
@@ -217,19 +227,60 @@ input:focus {
   display: flex;
   justify-content: center;
   font-size: 50px;
+    color: #fff;
+    text-shadow:
+    0 0 7px #ec0fbc,
+    0 0 10px #ec0fbc,
+    0 0 21px #ec0fbc,
+    0 0 42px rgb(240, 129, 205),
+    0 0 82px rgb(240, 129, 205),
+    0 0 92px rgb(240, 129, 205),
+    0 0 102px rgb(240, 129, 205),
+    0 0 151px rgb(240, 129, 205);
+ 
+    
 }
 #l-form{
-  color: #ef09ae;
-  font-size: 30px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: #fff;
+  font-size: 20px;
   text-shadow:
-    /* White glow */
-    0 0 7px #fff,
-    0 0 10px #fff,
-    0 0 21px #fff,
-    /* Green glow */
-    0 0 42px #0fa,
-    0 0 82px #0fa,
-    0 0 92px #0fa,
-    0 0 102px #0fa,
-    0 0 151px #0fa;
+  0 0 7px #ec0fbc,
+  0 0 10px #ec0fbc,
+  0 0 21px #ec0fbc,
+  0 0 42px rgb(240, 129, 205),
+  0 0 82px rgb(240, 129, 205),
+  0 0 92px rgb(240, 129, 205),
+  0 0 102px rgb(240, 129, 205),
+  0 0 151px rgb(240, 129, 205);
+
+}
+#Signup {
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+    color: #fff;
+    text-shadow:
+    0 0 7px #37ce00,
+    0 0 10px #37ce00,
+    0 0 21px #37ce00,
+    0 0 42px rgb(153, 246, 151),
+    0 0 82px rgb(153, 246, 151),
+    0 0 92px rgb(153, 246, 151),
+    0 0 102px rgb(153, 246, 151),
+    0 0 151px rgb(153, 246, 151);
+}
+#s-form {
+  color: #fff;
+  text-shadow:
+  0 0 7px #37ce00,
+  0 0 10px #37ce00,
+  0 0 21px #37ce00,
+  0 0 42px rgb(153, 246, 151),
+  0 0 82px rgb(153, 246, 151),
+  0 0 92px rgb(153, 246, 151),
+  0 0 102px rgb(153, 246, 151),
+  0 0 151px rgb(153, 246, 151);
 }
