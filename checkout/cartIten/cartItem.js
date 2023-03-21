@@ -7,11 +7,11 @@ import { idbPromise } from "../../utils/helpers"; // need to fix to match our pr
 //need to make sure that the cart item component is in the right place
 
 //
-const CartItem = ({ item }) => {
+const CartItem = ({ item }) => { // cart item contains the item and the quantity
 
-  const [, dispatch] = useStoreContext();
+  const [, dispatch] = useStoreContext(); //
 
-  const removeFromCart = item => {
+  const removeFromCart = item => { // query might not be right
     dispatch({
       type: REMOVE_FROM_CART,
       _id: item._id
@@ -20,7 +20,7 @@ const CartItem = ({ item }) => {
 
   };
 
-  const onChange = (e) => {
+  const onChange = (e) => { // e is the event
     const value = e.target.value;
     if (value === '0') {
       dispatch({
@@ -40,6 +40,7 @@ const CartItem = ({ item }) => {
     }
   }
 
+  // why is return not a template literal?
   return (
     <div className="flex-row">
       <div>

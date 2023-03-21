@@ -30,9 +30,9 @@ import "./style.css";
 // creates a stripe object?
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY); // need to set keys in .env
 
-const Cart = () => {
-  const [state, dispatch] = useStoreContext();
-  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+const Cart = () => { 
+  const [state, dispatch] = useStoreContext(); //dispatch is a function that allows us to update the global state object
+  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT); // this is the query that is called when the checkout button is clicked
 
   //using the react hook useEffect to check if the data is there? I think?
   useEffect(() => {
@@ -66,7 +66,7 @@ const Cart = () => {
     return sum.toFixed(2);
   }
 
-  function submitCheckout() {
+  function submitCheckout() { // this is the function that is called when the checkout button is clicked
     const productIds = [];
 
     state.cart.forEach((item) => {
@@ -76,7 +76,7 @@ const Cart = () => {
     });
 
     console.log("productIds", productIds);
-    console.log("key", process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+    console.log("key", process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY); // I need to change the name of the key in the .env
     getCheckout({
       variables: { products: productIds },
     });
@@ -90,7 +90,7 @@ const Cart = () => {
         </span>
       </div>
     );
-  }
+  } 
 
   return (
     <div className="cart">
@@ -123,7 +123,7 @@ const Cart = () => {
         </h3>
       )}
     </div>
-  );
-};
+  );  //end of return
+}; //end of cart code block
 
 export default Cart;
