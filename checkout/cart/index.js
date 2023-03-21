@@ -11,6 +11,7 @@ import { useLazyQuery } from "@apollo/client";
 import { QUERY_CHECKOUT } from "../../utils/queries"; // need to fix to match our project
 
 // imports the helper function
+// ----- maybe make it talk to auth in the utils folder?
 import { idbPromise } from "../../utils/helpers"; // need to fix to match our project
 
 // imports the cart item component
@@ -33,6 +34,7 @@ const Cart = () => {
   const [state, dispatch] = useStoreContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
+  //using the react hook useEffect to check if the data is there? I think?
   useEffect(() => {
     if (data) {
       stripePromise.then((res) => {

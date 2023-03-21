@@ -1,8 +1,12 @@
 import React from 'react';
-import { useStoreContext } from "../../utils/GlobalState";
-import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
-import { idbPromise } from "../../utils/helpers";
+import { useStoreContext } from "../../utils/GlobalState"; // need to fix to match our project
+import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "../../utils/actions"; // need to fix to match our project
+import { idbPromise } from "../../utils/helpers"; // need to fix to match our project, can use same solution form cart/index.js
 
+//basically need to change the names of everything to match our project
+//need to make sure that the cart item component is in the right place
+
+//
 const CartItem = ({ item }) => {
 
   const [, dispatch] = useStoreContext();
