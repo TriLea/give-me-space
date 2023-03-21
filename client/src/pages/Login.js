@@ -33,8 +33,8 @@ function Login(props) {
     <div className="container my-1">
       <Link to="/signup">← Go to Signup</Link>
 
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
+      <h2 id="Login">Login</h2>
+      <form id="l-form" onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
           <label htmlFor="email">Email address:</label>
           <input
