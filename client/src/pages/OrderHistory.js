@@ -1,11 +1,54 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
+import { useQuery } from "@apollo/client";
+import { QUERY_USER } from "../utils/queries";
 
 function OrderHistory() {
-  const { data } = useQuery(QUERY_USER);
+  // const { data } = useQuery(QUERY_USER);
+  const data = [
+    {
+      _id: "6F5DS78914267659892",
+      purchaseDate: "1679372253",
+      star: {
+        index: "https://picsum.photos/200/200",
+        name: "My cool name",
+        type: "Red Giant",
+        price: 25,
+      },
+    },
+    {
+      _id: "6F5DS789142676500001",
+      purchaseDate: "1679372000",
+      star: {
+        index: "https://picsum.photos/200/200",
+        name: "sweet name",
+        type: "Blue Pig",
+        price: 30,
+      },
+    },
+    {
+      _id: "6F5DS78914267650032",
+      purchaseDate: "1679370001",
+      star: {
+        index: "https://picsum.photos/200/200",
+        name: "Joji",
+        type: "Pink Panda",
+        price: 40,
+      },
+    },
+    {
+      _id: "6F5DS78914267651232",
+      purchaseDate: "1679370002",
+      star: {
+        index: "https://picsum.photos/200/200",
+        name: "Ganji",
+        type: "Red Bird",
+        price: 35,
+      },
+    },
+  ];
+
   let user;
 
   if (data) {
@@ -14,8 +57,19 @@ function OrderHistory() {
 
   return (
     <>
-      <div className="container my-1">
         <Link to="/">← Back to Products</Link>
+      <div id="dash"className="container2">
+
+        {data.map(obj => (
+          <div key={obj._id} className="card">
+            <img src={obj.star.index} />
+            <div>
+              <h6>{obj.star.name}</h6>
+              <h6>{obj.star.type}</h6>
+              <h6>{obj.star.price}</h6>
+            </div>
+          </div>
+        ))}
 
         {user ? (
           <>
