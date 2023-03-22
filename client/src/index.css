@@ -200,6 +200,7 @@ input:focus {
   padding-left: var(--spacing-two);
   padding: 14px;
   border-style: dashed;
+  border-color: #6cafe6;
   background-color: rgba(61, 55, 222, 0.301)
 }
 
@@ -367,6 +368,7 @@ input:focus {
   padding: 40px;
   height: 250px;
   border-style:dashed;
+  border-color: #6cafe6;
   background-color:#ffffff72
 }
 
