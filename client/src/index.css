@@ -253,22 +253,34 @@ input:focus {
 
 .landing {
   justify-content: center;
+  margin-top: 40px;
   height: 150px;
   width: 500px;
   border-radius: 50%;
-  background-color:#ffffffa8
+  background-color:#ffffff9f
+}
+
+#land2 {
+  font-size: 18px;
+  padding: 40px;
+  padding-bottom: 5px;
 }
 
 .landing2 {
   text-align: center;
+  justify-content: center;
 }
 
 .landing3 {
   text-align: center;
-  width: 800px;
-  height: 350px;
-  border-radius: 30%;
-  background-color:#ffffffa8
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+  padding: 40px;
+  height: 250px;
+  background-color:#ffffff72
 }
 
-
+#pic {
+  justify-content: center;
+}
