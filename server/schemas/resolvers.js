@@ -1,7 +1,7 @@
-const { AuthenticationError } = require('apollo-server-express')
-const { User, Order } = require('../models')
-const { signToken } = require('../utils/auth')
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
+const { GraphQLError } = require("graphql");
+const { User, Product, Category, Order } = require("../models");
+const { signToken } = require("../utils/auth");
+const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 const resolvers = {
   Query: {
@@ -89,9 +89,9 @@ const resolvers = {
       })
 
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
+        payment_method_types: ["card"],
         line_items,
-        mode: 'payment',
+        mode: "payment",
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`,
       })
