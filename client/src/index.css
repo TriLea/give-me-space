@@ -160,7 +160,39 @@ input:focus {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+#donate{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color: #fff;
+  padding: 10px;
 
+}
+#donate-drop{
+  padding: 5%;
+  display: flex;
+  justify-content: space-around;
+
+}
+.container3 h2{
+
+  color: #fff;
+  text-shadow:
+  0 0 7px #f70202,
+  0 0 10px #f70202,
+  0 0 21px #f70202,
+  0 0 42px rgb(246, 157, 157),
+  0 0 82px rgb(246, 157, 157),
+  0 0 92px rgb(246, 157, 157),
+  0 0 102px rgb(246, 157, 157),
+  0 0 151px rgb(246, 157, 157);
+}
+#type{
+font-size: 19px;
+justify-content: center;
+}
 .flex-row {
   display: flex;
   flex-wrap: wrap;

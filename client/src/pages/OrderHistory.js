@@ -57,7 +57,7 @@ function OrderHistory() {
 
   return (
     <>
-        <Link to="/">← Back to Products</Link>
+        <Link to="/">← Back to Home</Link>
       <div id="dash"className="container2">
 
         {data.map(obj => (
