@@ -17,6 +17,7 @@ html,
 body {
   min-height: 100%;
   background-image: url("solarpic.png");
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: 100% 100vh;
   margin: 0;
@@ -362,9 +363,15 @@ input:focus {
   margin-bottom: 60px;
   padding: 40px;
   height: 250px;
+  border-radius: .5px;
   background-color:#ffffff72
 }
 
 #pic {
+  text-align: center;
+  display: block;
   justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 100%;
 }
