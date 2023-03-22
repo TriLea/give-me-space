@@ -51,9 +51,9 @@ const Donate = () => {
     });
   }
   return (
-    <div className="container">
-      <h1>Please make a selection to choce donation.</h1>
-      <h1>Then create a name!</h1>
+    <div id="donate" className="container3">
+      <h2>Please make a selection to choice donation.</h2>
+      <h2>Then create a name!</h2>
       {starData ? (
       <form onSubmit={handleSubmit}>
       <div>
@@ -69,6 +69,7 @@ const Donate = () => {
         <input type="text" name="type" id="type" value = {starData.star.type} disabled/>
       </div>
 
+       <div id="donate-drop"className="Donatedrop">
       <select id="type" value={amount} onChange={(ev)=> setAmount (ev.target.value)} >
         <option value={0} disabled>Please Select Donation Amount...</option>
         <option value={25}>Red Giant $25</option>
@@ -77,8 +78,10 @@ const Donate = () => {
         <option value={10}>Red Dwarf $10</option>
         <option value={5}>Brown Dwarf $5</option>
       </select>
+      </div> 
       <div>
-        <label htmlFor="star" value={starName} >Star Name</label> <input type="text" name="star" id="star" onChange={(ev)=> setStarName (ev.target.value)}/>
+        <h2><label htmlFor="star" value={starName} >Star Name</label> <input type="text" name="star" id="star" onChange={(ev)=> setStarName (ev.target.value)}/>
+        </h2>
       </div>
       <div>
         <button>Donate</button>
