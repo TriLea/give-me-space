@@ -31,7 +31,7 @@ const typeDefs = `#graphql
   }
 
   type Query {
-    getStar: Star
+    star: Star
     user: User
     order(_id: ID!): Order
     checkout(index: String!, type: String!, price: Float!, name: String!): Checkout
