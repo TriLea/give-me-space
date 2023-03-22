@@ -149,6 +149,12 @@ input:focus {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+}
+.container2{
+  width: 85%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -180,9 +186,6 @@ input:focus {
 .my-1 {
   margin-top: var(--spacing-one);
   margin-bottom: var(--spacing-one);
- 
-
-  
 }
 
 .my-2 {
