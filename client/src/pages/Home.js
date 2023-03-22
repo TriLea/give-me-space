@@ -5,7 +5,7 @@ import Cart from "../components/Cart";
 
 const Home = () => {
   return (
-    <div className="container">
+    <div id="home"className="container">
       <div className="card bg-white card-rounded">
     <div className="card-header bg-dark text-center">
       <h1>Buy A Star, Save Hubble!</h1>

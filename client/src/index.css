@@ -210,6 +210,11 @@ input:focus {
   padding-bottom: var(--spacing-two);
 }
 
+.card{
+  width:25%;
+  text-align: center
+}
+
 .card {
   width: 31%;
   text-align: center;
@@ -218,7 +223,6 @@ input:focus {
   height: 300px;
   border-radius: 12px;
   margin: 5px;
-  
 }
 
 .card img {

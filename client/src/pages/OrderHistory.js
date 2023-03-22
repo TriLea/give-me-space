@@ -58,7 +58,7 @@ function OrderHistory() {
   return (
     <>
         <Link to="/">← Back to Products</Link>
-      <div className="container my-1">
+      <div id="dash"className="container my-1">
 
         {data.map(obj => (
           <div key={obj._id} className="card">
