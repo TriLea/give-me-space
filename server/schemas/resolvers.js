@@ -5,86 +5,88 @@ const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 const resolvers = {
   Query: {
-    categories: async () => {
-      return await Category.find();
-    },
-    products: async (parent, { category, name }) => {
-      const params = {};
+    getStar: async (parent) => {
+      const categories = [
+        {
+          type: 'Red Giant',
+          price: 25,
+        },
+        {
+          type: 'White Dwarf',
+          price: 20,
+        },
+        {
+          type: 'Neutron',
+          price: 15,
+        },
+        {
+          type: 'Red Dwarf',
+          price: 10,
+        },
+        {
+          type: 'Brown Dwarf',
+          price: 5,
+        },
+      ]
+      const category =
+        categories[Math.floor(Math.random() * categories.length)]
 
-      if (category) {
-        params.category = category;
+      return {
+        index: `GSC-${Math.floor(Math.random() * 10000)}`,
+        name: '',
+        type: category.type,
+        price: category.price,
       }
-
-      if (name) {
-        params.name = {
-          $regex: name,
-        };
-      }
-
-      return await Product.find(params).populate("category");
     },
-    product: async (parent, { _id }) => {
-      return await Product.findById(_id).populate("category");
-    },
+
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: "orders.products",
-          populate: "category",
-        });
+        const user = await User.findById(context.user._id).populate('Order')
 
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate)
 
-        return user;
+        return user
       }
 
-      throw new GraphQLError("Not logged in!", {
+      throw new GraphQLError('Not logged in!', {
         extensions: {
-          code: "UNAUTHENTICATED",
+          code: 'UNAUTHENTICATED',
         },
-      });
+      })
     },
     order: async (parent, { _id }, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: "orders.products",
-          populate: "category",
-        });
+        const user = await User.findById(context.user._id).populate('Order')
 
-        return user.orders.id(_id);
+        return user.orders.id(_id)
       }
 
-      throw new GraphQLError("Not logged in!", {
+      throw new GraphQLError('Not logged in!', {
         extensions: {
-          code: "UNAUTHENTICATED",
+          code: 'UNAUTHENTICATED',
         },
-      });
+      })
     },
     checkout: async (parent, args, context) => {
-      const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
-      const line_items = [];
+      const url = new URL(context.headers.referer).origin
+      const order = new Order({ star: { ...args } })
+      const line_items = []
 
-      const { products } = await order.populate("products");
+      const star = await stripe.products.create({
+        name: args.name,
+        description: args.type,
+      })
 
-      for (let i = 0; i < products.length; i++) {
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`],
-        });
+      const price = await stripe.prices.create({
+        product: star.id,
+        unit_amount: args.price * 100,
+        currency: 'usd',
+      })
 
-        const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: products[i].price * 100,
-          currency: "usd",
-        });
-
-        line_items.push({
-          price: price.id,
-          quantity: 1,
-        });
-      }
+      line_items.push({
+        price: price.id,
+        quantity: 1,
+      })
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
@@ -92,84 +94,84 @@ const resolvers = {
         mode: "payment",
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`,
-      });
+      })
 
-      return { session: session.id };
+      return { session: session.id }
     },
   },
   Mutation: {
     addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
+      const user = await User.create(args)
+      const token = signToken(user)
 
-      return { token, user };
+      return { token, user }
     },
-    addOrder: async (parent, { products }, context) => {
-      console.log(context);
+    addOrder: async (parent, { star }, context) => {
+      console.log(context)
       if (context.user) {
-        const order = new Order({ products });
+        const order = new Order({ star })
 
         await User.findByIdAndUpdate(context.user._id, {
           $push: { orders: order },
-        });
+        })
 
-        return order;
+        return order
       }
 
-      throw new GraphQLError("Not logged in!", {
+      throw new GraphQLError('Not logged in!', {
         extensions: {
-          code: "UNAUTHENTICATED",
+          code: 'UNAUTHENTICATED',
         },
-      });
+      })
     },
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
           new: true,
-        });
+        })
       }
 
-      throw new GraphQLError("Not logged in!", {
+      throw new GraphQLError('Not logged in!', {
         extensions: {
-          code: "UNAUTHENTICATED",
+          code: 'UNAUTHENTICATED',
         },
-      });
+      })
     },
-    updateProduct: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
+    // updateProduct: async (parent, { _id, quantity }) => {
+    //   const decrement = Math.abs(quantity) * -1
 
-      return await Product.findByIdAndUpdate(
-        _id,
-        { $inc: { quantity: decrement } },
-        { new: true }
-      );
-    },
+    //   return await Product.findByIdAndUpdate(
+    //     _id,
+    //     { $inc: { quantity: decrement } },
+    //     { new: true },
+    //   )
+    // },
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email })
 
       if (!user) {
-        throw new GraphQLError("Incorrect credentials", {
+        throw new GraphQLError('Incorrect credentials', {
           extensions: {
-            code: "UNAUTHENTICATED",
+            code: 'UNAUTHENTICATED',
           },
-        });
+        })
       }
 
-      const correctPw = await user.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password)
 
       if (!correctPw) {
-        throw new GraphQLError("Incorrect credentials", {
+        throw new GraphQLError('Incorrect credentials', {
           extensions: {
-            code: "UNAUTHENTICATED",
+            code: 'UNAUTHENTICATED',
           },
-        });
+        })
       }
 
-      const token = signToken(user);
+      const token = signToken(user)
 
-      return { token, user };
+      return { token, user }
     },
   },
-};
+}
 
-module.exports = resolvers;
+module.exports = resolvers

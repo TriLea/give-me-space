@@ -1,23 +1,16 @@
 const typeDefs = `#graphql
-  type Category {
-    _id: ID
-    name: String
-  }
 
-  type Product {
-    _id: ID
-    name: String
-    description: String
-    image: String
-    quantity: Int
+  type Star {
+    index: String
+    type: String
     price: Float
-    category: Category
+    name: String
   }
 
   type Order {
     _id: ID
     purchaseDate: String
-    products: [Product]
+    star: Star
   }
 
   type User {
@@ -38,19 +31,16 @@ const typeDefs = `#graphql
   }
 
   type Query {
-    categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
+    getStar: Star
     user: User
     order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
+    checkout(index: String!, type: String!, price: Float!, name: String!): Checkout
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
+    addOrder(name: String!, index: String!, type: String!, price: Float!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
   }
 `;
