@@ -29,7 +29,7 @@ const resolvers = {
         },
       ]
       const category =
-        categories[Math.floor(Math.random() * categories.length())]
+        categories[Math.floor(Math.random() * categories.length)]
 
       return {
         index: `GSC-${Math.floor(Math.random() * 10000)}`,
@@ -73,13 +73,13 @@ const resolvers = {
       const line_items = []
 
       const star = await stripe.products.create({
-        name: star.name,
-        description: star.type,
+        name: args.name,
+        description: args.type,
       })
 
       const price = await stripe.prices.create({
-        star: star.index,
-        unit_amount: star.price * 100,
+        product: star.id,
+        unit_amount: args.price * 100,
         currency: 'usd',
       })
 

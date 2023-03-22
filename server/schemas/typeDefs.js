@@ -39,7 +39,7 @@ const typeDefs = `#graphql
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(name: String!, index: String!, type: String!, price: Number!): Order
+    addOrder(name: String!, index: String!, type: String!, price: Float!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
   }
