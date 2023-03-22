@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout($index: String!, $type: String!, $price: String!, $name: String!) {
+  query getCheckout($index: String!, $type: String!, $price: Float!, $name: String!) {
     checkout(index: $index, type: $type, price: $price, name: $name) {
       session
     }

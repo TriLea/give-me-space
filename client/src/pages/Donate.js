@@ -14,8 +14,6 @@ import Auth from "../utils/auth"; // need to fix to match our project
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY); // need to set keys in .env
 
-
-
 const Donate = () => {
   const [amount, setAmount] = useState(0)
   const [starName, setStarName] = useState("")
@@ -33,7 +31,6 @@ const Donate = () => {
     }
   }, [data]);
 
-
   const handleSubmit=function(ev) {
     ev.preventDefault();
     console.log("Star Name", starName) 
@@ -42,7 +39,6 @@ const Donate = () => {
     getCheckout({
       variables: { index, type, name: starName, price: amount },
     });
-
   }
   return (
     <div className="container">
