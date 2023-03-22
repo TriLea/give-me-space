@@ -15,7 +15,7 @@ const Home = () => {
       <h2 id="land2">How many people can say they own their very own star?</h2>
     </div>
     <div>
-    <img src={process.env.PUBLIC_URL+'/PicHubble.png'} style={{height:"300",width:"500px",padding:"50px"}} id="pic"/>
+    <img src={process.env.PUBLIC_URL+'/HubblePic.jpeg'} style={{height:"300",width:"500px",padding:"50px"}} id="pic"/>
     </div>
       <div style={{display:"flex",justifyContent:"center",padding:"40px",color:"rgb(5, 18, 117)"}} className="landing3">
       <h2>The James Webb Telescope has bumped Hubble down to the second best telescope ever built. 

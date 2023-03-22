@@ -175,8 +175,8 @@ input:focus {
 }
 
 .mx-1 {
-  margin-right: var(--spacing-one);
-  margin-left: var(--spacing-one);
+  margin-right: var(--spacing-two);
+  margin-left: var(--spacing-two);
 }
 
 .mx-2 {
@@ -196,8 +196,11 @@ input:focus {
 }
 
 .px-1 {
-  padding-right: var(--spacing-one);
-  padding-left: var(--spacing-one);
+  padding-right: var(--spacing-two);
+  padding-left: var(--spacing-two);
+  padding: 14px;
+  border-style: dashed;
+  background-color: rgba(61, 55, 222, 0.301)
 }
 
 .px-2 {
@@ -363,7 +366,7 @@ input:focus {
   margin-bottom: 60px;
   padding: 40px;
   height: 250px;
-  border-radius: .5px;
+  border-style:dashed;
   background-color:#ffffff72
 }
 
