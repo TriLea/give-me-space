@@ -2,44 +2,23 @@ const db = require('./connection');
 const { User, Product, Category } = require('../models');
 
 db.once('open', async () => {
-  await Category.deleteMany();
-
-  const categories = await Category.insertMany([
-    { name: 'Red Giant' },
-    { name: 'White Dwarf' },
-    { name: 'Neutron' },
-    { name: 'Red Dwarf' },
-    { name: 'Brown Dwarf' }
-  ]);
-
-  console.log('categories seeded');
-
   await Product.deleteMany();
 
   const products = await Product.insertMany([
     {
       name: 'Tin of Cookies',
-      description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
       image: 'cookie-tin.jpg',
-      category: categories[0]._id,
-      price: 25.00,
+      about: ''
     },
     {
-      name: 'Canned Coffee',
-      description:
-        'Praesent sed lacinia mauris. Nulla congue nibh magna, at feugiat nunc scelerisque quis. Donec iaculis rutrum vulputate. Suspendisse lectus sem, vulputate ac lectus sed, placerat consequat dui.',
-      image: 'canned-coffee.jpg',
-      category: categories[1]._id,
-      price: 20.00,
+      name: 'Tin of Cookies',
+      image: 'cookie-tin.jpg',
+      about: ''
     },
     {
-      name: 'Toilet Paper',
-      category: categories[2]._id,
-      description:
-        'Donec volutpat erat erat, sit amet gravida justo sodales in. Phasellus tempus euismod urna. Proin ultrices nisi ut ipsum congue, vitae porttitor libero suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam lacinia a nisi non congue.',
-      image: 'toilet-paper.jpg',
-      price: 15.00,
+      name: 'Tin of Cookies',
+      image: 'cookie-tin.jpg',
+      about: ''
     },
     {
       name: 'Handmade Soap',
