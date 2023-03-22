@@ -9,7 +9,6 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home';
-import Detail from './pages/Detail';
 import Donate from './pages/Donate'; 
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
@@ -65,10 +64,6 @@ function App() {
               <Route 
                 path="/orderHistory" 
                 element={<OrderHistory />} 
-              />
-              <Route 
-                path="/products/:id" 
-                element={<Detail />} 
               />
               <Route
               path="/donate"
