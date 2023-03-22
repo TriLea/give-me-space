@@ -5,29 +5,43 @@ const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
 
 const resolvers = {
   Query: {
-    // categories: async () => {
-    //   return await Category.find();
-    // },
-    star: async (parent, { category, name }) => {
-      const params = {}
+    getStar: async (parent) => {
+      const categories = [
+        {
+          type: 'Red Giant',
+          price: 25,
+        },
+        {
+          type: 'White Dwarf',
+          price: 20,
+        },
+        {
+          type: 'Neutron',
+          price: 15,
+        },
+        {
+          type: 'Red Dwarf',
+          price: 10,
+        },
+        {
+          type: 'Brown Dwarf',
+          price: 5,
+        },
+      ]
+      const category =
+        categories[Math.floor(Math.random() * categories.length())]
 
-      if (index) {
-        params.index = {
-          $regex: index,
-        }
+      return {
+        index: `GSC-${Math.floor(Math.random() * 10000)}`,
+        name: '',
+        type: category.type,
+        price: category.price,
       }
-
-      return await Star.find(params).populate('star')
     },
-    // product: async (parent, { _id }) => {
-    //   return await Product.findById(_id).populate('category')
-    // },
+
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'orders.star',
-          populate: 'star',
-        })
+        const user = await User.findById(context.user._id).populate('Order')
 
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate)
 
@@ -42,10 +56,7 @@ const resolvers = {
     },
     order: async (parent, { _id }, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'orders.star',
-          populate: 'star',
-        })
+        const user = await User.findById(context.user._id).populate('Order')
 
         return user.orders.id(_id)
       }
@@ -58,29 +69,24 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin
-      const order = new Order({ star: args.star })
+      const order = new Order({ star: { ...args } })
       const line_items = []
 
-      const { star } = await order.populate('products')
+      const star = await stripe.products.create({
+        name: star.name,
+        description: star.type,
+      })
 
-      for (let i = 0; i < star.length; i++) {
-        const star = await stripe.products.create({
-          name: star[i].name,
-          description: star[i].description,
-          images: [`${url}/images/${star[i].image}`],
-        })
+      const price = await stripe.prices.create({
+        star: star.index,
+        unit_amount: star.price * 100,
+        currency: 'usd',
+      })
 
-        const price = await stripe.prices.create({
-          star: star.id,
-          unit_amount: star[i].price * 100,
-          currency: 'usd',
-        })
-
-        line_items.push({
-          price: price.id,
-          quantity: 1,
-        })
-      }
+      line_items.push({
+        price: price.id,
+        quantity: 1,
+      })
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],

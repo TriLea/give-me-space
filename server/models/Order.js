@@ -8,8 +8,8 @@ const orderSchema = new Schema({
     default: Date.now,
   },
   star: {
-    name: String,
     index: String,
+    name: String,
     type: String,
     price: Number,
   },

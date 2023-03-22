@@ -3,7 +3,8 @@ const typeDefs = `#graphql
   type Star {
     index: String
     type: String
-    price: Number
+    price: Float
+    name: String
   }
 
   type Order {
@@ -33,7 +34,7 @@ const typeDefs = `#graphql
     getStar: Star
     user: User
     order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
+    checkout(index: String!, type: String!, price: Float!, name: String!): Checkout
   }
 
   type Mutation {
