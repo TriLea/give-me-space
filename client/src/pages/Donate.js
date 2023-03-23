@@ -52,19 +52,19 @@ const Donate = () => {
   }
   return (
     <div id="donate" className="container3">
-      <h2>Please make a selection to choice donation.</h2>
-      <h2>Then create a name!</h2>
+      <h2>Please make a selection of choice to donate.</h2>
+      <h2>THEN CREATE A NAME!</h2>
       {starData ? (
       <form onSubmit={handleSubmit}>
-      <div>
+      <div id="s-index">
         <label htmlFor="index">
-          starIndex
+          Star Index
         </label>
         <input type="text" name="index" id="index" value = {starData.star.index} disabled/>
       </div>
-      <div>
+      <div id="i-type">
         <label htmlFor="type">
-          type
+          Type
         </label>
         <input type="text" name="type" id="type" value = {starData.star.type} disabled/>
       </div>
@@ -80,7 +80,7 @@ const Donate = () => {
       </select>
       </div> 
       <div>
-        <h2><label htmlFor="star" value={starName} >Star Name</label> <input type="text" name="star" id="star" onChange={(ev)=> setStarName (ev.target.value)}/>
+        <h2 id="s-name"><label htmlFor="star" value={starName} >Star Name</label> <input type="text" name="star" id="star" onChange={(ev)=> setStarName (ev.target.value)}/>
         </h2>
       </div>
       <div>
