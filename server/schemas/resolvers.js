@@ -1,5 +1,5 @@
 const { GraphQLError } = require("graphql");
-const { User, Product, Category, Order } = require("../models");
+const { User, Order } = require("../models");
 const { signToken } = require("../utils/auth");
 require("dotenv").config();
 const stripe = require("stripe")(process.env.stripe_secretKey);
