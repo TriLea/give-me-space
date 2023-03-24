@@ -9,12 +9,14 @@ export const QUERY_CHECKOUT = gql`
 `;
 
 export const QUERY_STAR = gql`
-  query getStar 
   { 
-  name
-  index
-  type
-  price
+    star
+    {
+      name
+      index
+      type
+      price
+    }
   }
 `;
 
@@ -26,7 +28,7 @@ export const QUERY_USER = gql`
       orders {
         _id
         purchaseDate
-        products {
+        star {
           name 
           index
           type

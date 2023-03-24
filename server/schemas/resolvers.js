@@ -1,11 +1,12 @@
 const { GraphQLError } = require("graphql");
 const { User, Product, Category, Order } = require("../models");
 const { signToken } = require("../utils/auth");
-const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+require("dotenv").config();
+const stripe = require("stripe")(process.env.stripe_secretKey);
 
 const resolvers = {
   Query: {
-    getStar: async (parent) => {
+    star: async (parent) => {
       const categories = [
         {
           type: 'Red Giant',
@@ -72,6 +73,8 @@ const resolvers = {
       const order = new Order({ star: { ...args } })
       const line_items = []
 
+      console.log(args);
+
       const star = await stripe.products.create({
         name: args.name,
         description: args.type,
@@ -106,11 +109,13 @@ const resolvers = {
 
       return { token, user }
     },
-    addOrder: async (parent, { star }, context) => {
-      console.log(context)
-      if (context.user) {
-        const order = new Order({ star })
+    addOrder: async (parent, args, context) => {
 
+      console.log("args",args);
+      if (context.user) {
+        const order = new Order({...args});
+        order.save();
+        console.log("order",order);
         await User.findByIdAndUpdate(context.user._id, {
           $push: { orders: order },
         })
