@@ -7,6 +7,7 @@
   --error: #e42e01;
   --spacing-one: calc(1rem * 0.5);
   --spacing-two: calc(1rem);
+  --font-family: 'Abel';
 }
 
 * {
@@ -22,7 +23,7 @@ body {
   background-size: 100% 100vh;
   margin: 0;
   padding: 0;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Abel';
   font-weight: 400;
   line-height: 1.5;
   font-size: 16px;
@@ -35,7 +36,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:'Allerta Stencil';
   font-weight: 500;
   margin: 5px 0;
   line-height: 1.25;
@@ -253,8 +254,8 @@ justify-content: center;
 }
 
 .mx-1 {
-  margin-right: var(--spacing-one);
-  margin-left: var(--spacing-one);
+  margin-right: var(--spacing-two);
+  margin-left: var(--spacing-two);
 }
 
 .mx-2 {
@@ -274,8 +275,12 @@ justify-content: center;
 }
 
 .px-1 {
-  padding-right: var(--spacing-one);
-  padding-left: var(--spacing-one);
+  padding-right: var(--spacing-two);
+  padding-left: var(--spacing-two);
+  padding: 14px;
+  border-style: dashed;
+  border-color: #6cafe6;
+  background-color: rgba(61, 55, 222, 0.301)
 }
 
 .px-2 {
@@ -441,7 +446,8 @@ justify-content: center;
   margin-bottom: 60px;
   padding: 40px;
   height: 250px;
-  border-radius: .5px;
+  border-style:dashed;
+  border-color: #6cafe6;
   background-color:#ffffff72
 }
 
