@@ -13,9 +13,9 @@ Type npm install in your terminal when in the file directory for our project so 
 You can read about our story on saving the Hubble Telescope from the home page. Click on sign in to be directed to the sign in page of the website. Once you have been signed in click on the "buy star" button to be directed to a webpage that allows you to donate any amount of money you wish to give. 
 FINISH THIS BEFORE SUBMIT
 
-![screenshot](assets/images/screenshot.png)
+
 ![GitHub repo](https://github.com/haileycarlson/give-me-space)
-![Heroku]() 
+![Heroku](https://give-me-space.herokuapp.com/) 
 
 ## Credits
 
