@@ -9,37 +9,3 @@ Give Me Space is a website that was made for the purpose of helping raise money 
 ## Installation
 
 Type npm install in your terminal when in the file directory for our project so that all the required json packages can be downloaded to your computer. 
-
-## Usage
-
-You can read about our story on saving the Hubble Telescope from the home page. Click on sign in to be directed to the sign in page of the website. Once you have been signed in click on the "buy star" button to be directed to a webpage that allows you to donate any amount of money you wish to give. 
-FINISH THIS BEFORE SUBMIT
-
-
-![GitHub repo](https://github.com/haileycarlson/give-me-space)
-![Heroku](https://give-me-space.herokuapp.com/) 
-
-## Credits
-
-N/A
-
-## License
-
-Please refer to the LICENSE in the repo.
-
-## Badges
-
-N/A
-
-## Features
-
-N/A
-
-## How to Contribute
-
-N/A
-
-## Tests
-
-N/A
-
